@@ -10,6 +10,10 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
+   extends: ["eslint:recommended", "plugin:prettier/recommended"],
+  rules: {
+    "prettier/prettier": ["error", { endOfLine: "auto" }]
+  },
   root: true,
   env: {
     node: true,
