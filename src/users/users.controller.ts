@@ -2,13 +2,12 @@ import {
   Body,
   Controller,
   Get,
-  Headers,
-  Ip,
   Param,
   Post,
   Query,
   ParseIntPipe,
 } from '@nestjs/common';
+import { CreateUserDto } from './dtos/create-user.dto';
 @Controller('users')
 export class UserController {
   @Get('/:id')
@@ -21,12 +20,8 @@ export class UserController {
     return 'All users will be displayed here';
   }
   @Post()
-  public createUser(
-    @Body() request: any,
-    @Headers() headers: any,
-    @Ip() ip: any,
-  ) {
-    console.log(request, headers, ip);
+  public createUser(@Body() createUserDto: CreateUserDto) {
+    console.log(createUserDto);
     return 'User created successfully';
   }
 }
