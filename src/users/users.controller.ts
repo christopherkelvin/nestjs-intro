@@ -6,6 +6,7 @@ import {
   Post,
   Query,
   ParseIntPipe,
+  Patch,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 @Controller('users')
@@ -23,5 +24,9 @@ export class UserController {
   public createUser(@Body() createUserDto: CreateUserDto) {
     console.log(createUserDto);
     return 'User created successfully';
+  }
+  @Patch()
+  public patchUser(@Body() body) {
+    
   }
 }
