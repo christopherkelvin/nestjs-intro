@@ -9,6 +9,7 @@ import {
   Patch,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
+import { PatchUserDto } from './dtos/patch-user.dto';
 @Controller('users')
 export class UserController {
   @Get('/:id')
@@ -26,7 +27,7 @@ export class UserController {
     return 'User created successfully';
   }
   @Patch()
-  public patchUser(@Body() body) {
-    
+  public patchUser(@Body() patchUserDto: PatchUserDto) {
+    return patchUserDto;
   }
 }
