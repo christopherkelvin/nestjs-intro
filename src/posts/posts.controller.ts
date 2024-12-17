@@ -3,10 +3,18 @@ import { PostsService } from './providers/posts.service';
 
 @Controller('posts')
 export class PostsController {
-  // eslint-disable-next-line no-unused-vars
-  constructor(private readonly postService: PostsService) {}
-  @Get('/:userId')
-  public findAll(@Param() userId: string) {
-    return this.postService.findAll(userId);
+  constructor(
+    /*
+     *  Injecting Posts Service
+     */
+    private readonly postsService: PostsService,
+  ) {}
+
+  /*
+   * GET localhost:3000/posts/:userId
+   */
+  @Get('/:userId?')
+  public getPosts(@Param('userId') userId: string) {
+    return this.postsService.findAll(userId);
   }
 }

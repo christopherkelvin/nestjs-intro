@@ -1,9 +1,7 @@
-## Patch request for app Controller
-
 PATCH http://localhost:3000/users
 Content-Type: application/json
 
 {
-    "email": "john.doe@example.com",
-    "password": "password123"
+  "email": "john",
+  "password": "Password123#"
 }

@@ -1,13 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { UserService } from 'src/users/providers/user.service';
+import { UsersService } from 'src/users/providers/users.service';
+
 @Injectable()
 export class PostsService {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    /*
+     * Injecting Users Service
+     */
+    private readonly usersService: UsersService,
+  ) {}
+
   public findAll(userId: string) {
-    const user = this.userService.findOneById(userId);
+    const user = this.usersService.findOneById(userId);
+
     return [
-      { user: user, title: 'Title 1', content: 'Content 1' },
-      { user: user, title: 'Title 2', content: 'Content 2' },
+      {
+        user: user,
+        title: 'Test Tile',
+        content: 'Test Content',
+      },
+      {
+        user: user,
+        title: 'Test Tile 2',
+        content: 'Test Content 2',
+      },
     ];
   }
 }
