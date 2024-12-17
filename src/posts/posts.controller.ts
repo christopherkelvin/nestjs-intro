@@ -5,7 +5,7 @@ import { PostsService } from './providers/posts.service';
 export class PostsController {
   // eslint-disable-next-line no-unused-vars
   constructor(private readonly postService: PostsService) {}
-  @Get('/:userId?')
+  @Get('/:userId')
   public findAll(@Param() userId: string) {
     return this.postService.findAll(userId);
   }
