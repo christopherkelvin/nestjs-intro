@@ -1,8 +1,0 @@
-## Post request for app Controller
-
-POST http://localhost:3000/posts
-Content-Type: application/json
-
-{
-    
-}

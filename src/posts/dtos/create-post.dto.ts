@@ -1,45 +1,62 @@
-import { Optional } from '@nestjs/common';
+// For Documenation refer url: https://docs.nestjs.com/openapi/types-and-parameters
+import { postStatus } from '../enums/post-status.enum';
 import {
-  IsDate,
+  IsArray,
+  IsEnum,
+  IsISO8601,
+  IsJSON,
   IsNotEmpty,
+  IsOptional,
   IsString,
-  MaxLength,
+  IsUrl,
+  Matches,
   MinLength,
 } from 'class-validator';
+import { PostType } from '../enums/post-type.enum';
 
 export class CreatePostDto {
   @IsString()
+  @MinLength(4)
   @IsNotEmpty()
-  @MinLength(3)
-  @MaxLength(96)
   title: string;
 
-  @IsString()
+  @IsEnum(PostType)
+  @IsNotEmpty()
   postType: string;
 
-  @IsNotEmpty()
-  @MinLength(3)
-  @MaxLength(300)
   @IsString()
+  @IsNotEmpty()
+  @Matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {
+    message:
+      'A slug should be all small letters and uses only "-" and without spaces. For example "my-url"',
+  })
   slug: string;
 
-  @Optional()
-  @IsString()
-  content?: string;
+  @IsEnum(postStatus)
+  @IsNotEmpty()
+  status: postStatus;
 
-  @Optional()
+  @IsOptional()
   @IsString()
-  schema?: string;
+  content: string;
 
-  @Optional()
-  @IsString()
-  featuredImage?: string;
+  @IsOptional()
+  @IsJSON()
+  schema: string;
 
-  @IsDate()
-  publishDate: Date;
+  @IsOptional()
+  @IsUrl()
+  featuredImageUrl: string;
 
-  @IsString()
+  @IsISO8601()
+  @IsOptional()
+  publishOn: Date;
+
+  @IsArray()
+  @IsOptional()
+  @IsString({ each: true })
+  @MinLength(3, { each: true })
   tags: string[];
 
-  metaOptions: [{ key: 4 }];
+  metaOptions: [{ key: 'sidebarEnabled'; value: false }];
 }
