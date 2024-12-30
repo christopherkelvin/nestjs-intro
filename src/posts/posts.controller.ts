@@ -10,6 +10,7 @@ export class PostsController {
     /*
      *  Injecting Posts Service
      */
+    // eslint-disable-next-line no-unused-vars
     private readonly postsService: PostsService,
   ) {}
 
